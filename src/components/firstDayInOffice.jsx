@@ -1,9 +1,22 @@
 import React, { Component } from "react";
 import { Form, Button, Col } from "react-bootstrap";
 import "../styles/header.css";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 class FirstDayInOffice extends Component {
-  state = {};
+  state = {
+    startDate: null,
+  };
+
+  handleDOBChange = (date) => {
+    this.setState({
+      startDate: date,
+    });
+  };
+
+  //state = { startDate: new Date() };
   render() {
     return (
       <div class="container">
@@ -27,7 +40,15 @@ class FirstDayInOffice extends Component {
               <Form.Control type="text" placeholder="Last Name" />
             </Form.Group>
             <Form.Group as={Col} controlId="dob">
-              <Form.Control type="text" placeholder="DOB(MM/DD/YY)" />
+              <div className="customDatePickerWidth">
+                <DatePicker
+                  className="form-control"
+                  selected={this.state.startDate}
+                  onChange={this.handleDOBChange}
+                  placeholderText="DOB(MM/DD/YY)"
+                  dateFormat="MM/dd/yy"
+                />
+              </div>
             </Form.Group>
           </Form.Row>
 
